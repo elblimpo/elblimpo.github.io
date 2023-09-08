@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hydra inside a webpage</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+    
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+  </head>
+  <body>
+    <canvas id="myCanvas" height="1000" width="1000"></canvas>
+    <script>
+      // create a new hydra-synth instance
+      var hydra = new Hydra({
+        canvas: document.getElementById("myCanvas"),
+        detectAudio: false
+      })
+    
+    s0.initImage("https://pbs.twimg.com/media/F3qof4BWAAAyMN0?format=jpg&name=4096x4096")
+    src(s0)
+        .scale(.4)
+        .mask(shape(4, .4))
+        .out(o1)
+
+    shape(4, .8)
+        .modulateKaleid(src(s0))
+        .mask(src(o1)
+            .modulateScale(osc(9)))
+        .color(()=>Math.sin(time*10.2),2,-.1)
+        .brightness(.1)
+        .blend(src(o1).scale(1.01)
+            .modulateScale(osc(()=>Math.sin(time/200), 1.05)),2)
+        .out(o0)
+
+    render(o0)
+    </script>
+    <style>
+      /* Apply CSS to make the background black */
+      body {
+        background-color: black;
+        margin: 0; /* Remove default margin */
+        overflow: hidden; /* Prevent scrollbars */
+      }
+      </style>
+  </body>
+</html>
