@@ -21,7 +21,7 @@
         detectAudio: false
       })
     
-    s0.initImage("https://pbs.twimg.com/media/F3qof4BWAAAyMN0?format=jpg&name=4096x4096")
+/*    s0.initImage("https://pbs.twimg.com/media/F3qof4BWAAAyMN0?format=jpg&name=4096x4096")
     src(s0)
         .scale(.4)
         .mask(shape(4, .4))
@@ -38,6 +38,22 @@
         .out(o0)
 
     render(o0)
+  */
+  src(o0)
+	.scale(1.01)
+	.blend(osc(10, .1, ({time})=>Math.sin(time*10)+2)
+		.mult(shape(4, .7, 1e-6)
+        .modulateKaleid(osc(()=>Math.sin(time*.5)+.1)).rotate(1,80)
+        .modulateScrollX(osc(()=>Math.sin(time*.4)),.01)
+        .rotate(.01,3.1)
+        .scale(()=>Math.sin(time*.52)*.5)
+        //.color(1.12,-1.04,-1.31)
+        .brightness(.3)
+        .modulateScale(noise(.1))), .02)
+	.modulate(o0,.01)
+	.out(o0)
+
+speed=.05
     </script>
     <style>
       /* Apply CSS to make the background black */
