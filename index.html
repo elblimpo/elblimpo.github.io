@@ -21,7 +21,6 @@
       })
     
       s0.initImage("https://pbs.twimg.com/media/F3qof4BWAAAyMN0?format=jpg&name=4096x4096")
-      s1.initCam()
           src(s0)
               .scale(.4)
               .mask(shape(4, .4))
@@ -35,7 +34,6 @@
               .brightness(.1)
               .blend(src(o1).scale(1.01)
                   .modulateScale(osc(()=>Math.sin(time/200), 1.05)),2)
-          .blend(s1,.7)
               .out(o0)
 
           render(o0)
