@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>hydra inside a webpage</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+    
+    <!-- import the latest version of hydra synth-->
+    <script src="https://unpkg.com/hydra-synth"></script>
+  </head>
+  <body>
+    <script>
+      var hydra = new Hydra({
+        width: 1280,
+        height: 1280,
+        detectAudio: false
+      })
+    
+  function decodeBase64(base64Code) {
+        return decodeURIComponent(atob(base64Code))
+  }
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  var code = decodeBase64(getParameterByName('code'));
+
+  eval(code);
+
+    </script>
+    <style>
+      body {
+        background-color: black;
+        margin: 0; /* Remove default margin */
+        overflow: hidden; /* Prevent scrollbars */
+      }
+      </style>
+  </body>
+</html>
